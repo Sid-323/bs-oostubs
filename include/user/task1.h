@@ -1,9 +1,10 @@
 #ifndef __task1_header__
 #define __task1_header__
 
+#include <stdint.h>
+
 #include "machine/multiboot.h"
 #include "user/appl.h"
-#include "stdint.h"
 
 /** \brief First test application
  *

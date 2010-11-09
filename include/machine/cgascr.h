@@ -9,7 +9,9 @@
 #ifndef __screen_include__
 #define __screen_include__
 
-/* INCLUDES */
+#include <stdint.h>
+
+#include "machine/io_port.h"
 
 /** \brief CGA-Dispaly driver
  *
@@ -17,24 +19,29 @@
  * the screen memory and I/O ports directly.
  */
 class CGA_Screen {
-	
+private:
+	static IO_Port index_port, data_port;
+	static const unsigned char high_index = 14, low_index = 15;
+
 public:
+	static const unsigned short width = 80, height = 25;
+
+	static uint16_t *sptr; /* lower order byte is first on 386 */
+
+	static const unsigned char STD_ATTR = 15; /* white on black */
+	static const unsigned char ANNOY_ATTR = 11 | 5 << 4 | 1 << 7; /* cyan on magenta, blinking ;-) */
 
   /** \brief Constructor
    *
-   * \todo write implementation
    **/
-  CGA_Screen();
+  /* CGA_Screen(); */
 
   /** \brief Destructor
    *
-   * \todo write implementation
    **/
-  ~CGA_Screen();
+  /* ~CGA_Screen(); */
 
   /** \brief set the cursor position
-   *
-   * \todo write implementation
    *
    * \param x column number of new position 
    * \param y row number of new position
@@ -43,16 +50,12 @@ public:
 
   /** \brief get the cursor position
    *
-   * \todo write implementation
-   *
    * \param x reference for column number of current position
    * \param y reference for row number of curent position
    */
-  void getpos(unsigned short& x, unsigned short& y) const;
+  void getpos(unsigned short& x, unsigned short& y) /* const */;
 
   /** \brief print a character to a specific position
-   *
-   * \todo write implementation
    *
    * \param x column number of display position
    * \param y row number of display position
@@ -63,8 +66,6 @@ public:
 
   /** \brief print a string to the current position
    * 
-   * \todo write implementation
-   *
    * \param string string of characters to be displayed
    * \param n number auf characters in string
    * \param attrib display attributs
@@ -73,17 +74,20 @@ public:
 
   /** \brief scroll the display one line upwards
    *
-   * \todo write implementation
-   *
    * The new row at the bottom of the screen is filled with spaces.
    **/
   void scrollup();
 
   /** \brief clear the screen
    *
-   * \todo write implementation
    **/
   void clear();
 };
+
+		/* MACROS */
+
+#define GETOFFSET(X, Y)	((Y)*width + (X))
+#define GETX(O)		((O) % width)
+#define GETY(O)		((O) / width)
 
 #endif

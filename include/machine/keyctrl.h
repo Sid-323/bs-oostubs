@@ -114,7 +114,6 @@ public:
 
   /** \brief get the last pressed key
    *
-   * \todo write implementation
    *
    * Is used to get the information of the pressed key after is has been 
    * pressed. If a scancode and ASCII code could not be determined an invalid 
@@ -133,7 +132,6 @@ public:
 
   /** \brief set the speed and delay of repeats of the keyboard. 
    *
-   * \todo write implementation
    *
    * \param speed defines speed of a repeat (0 fast - 31 slow)
    * \param delay defines delay of a repeat (0 minimal - 7 maximal)
@@ -142,7 +140,6 @@ public:
 
   /** \brief switch the specified LED of the keyboard on or off.
    * 
-   * \todo write implementation
    *
    * \param led specifies the LED turned on or off
    * \param on if TRUE LED is turned on otherwise off

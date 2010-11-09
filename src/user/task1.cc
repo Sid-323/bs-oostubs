@@ -141,6 +141,7 @@ void Task1::testKeyboard()
 
 void Task1::action()
 {
+//	kout.clear();
 	kout.setpos(36, 1);
 	kout << "OOStuBs" << endl;
 

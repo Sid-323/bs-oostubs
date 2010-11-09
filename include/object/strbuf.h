@@ -9,8 +9,6 @@
 #ifndef __strbuf_include__
 #define __strbuf_include__
 
-/* INCLUDES */
-
 /** \brief Buffer containing text to output
  *
  * Stringbuffer implements a buffer gathering characters that have to be 
@@ -27,38 +25,34 @@ class Stringbuffer {
 protected:
   /** buffer containing the characters of the Stringbuffer
    *
-   * \todo write declaration
    **/
+   char buffer[256];
 
   /** buffer pointer saving the position of the next insertion 
    *
-   * \todo write declaration
    **/
+   char *pBuffer;
 
   /** \brief Default constructor
    *
    * Sets the buffer to be empty.
    *
-   * \todo write implementation
    **/
   Stringbuffer();
 
   /** \brief Default destructor
    *
-   * \todo write implementation
    **/
-  virtual ~Stringbuffer();
+  /* virtual ~Stringbuffer(); */
 
   /** \brief insert a character into the buffer
-   *
-   * \todo write implementation
    *
    * If the buffer is full after the insertion the buffer has to be emptied
    * by calling flush().
    *
    * \param c character to be inserted into the buffer
    **/
-  void put(char c); 
+  void put(char c);
 
   /** \brief flush the content of the buffer to the screen
    *

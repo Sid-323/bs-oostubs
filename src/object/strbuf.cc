@@ -8,4 +8,17 @@
 
 #include "object/strbuf.h"
 
-/* ToDo: insert sourcecode */ 
+Stringbuffer::Stringbuffer() : pBuffer(buffer)
+{
+	*buffer = '\0';
+}
+
+void
+Stringbuffer::put(char c)
+{
+	*pBuffer++ = c;
+
+	if (pBuffer == buffer + sizeof(buffer))
+		flush(); /* flush resets pBuffer */
+}
+

@@ -24,8 +24,6 @@ public:
  
   /** \brief flush the content of the internal buffer
    *
-   * \todo write implementation
-   *
    * It is called automaticaly as soon as the buffer is full or if a newline is
    * encountered.
    **/

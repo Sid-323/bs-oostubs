@@ -211,16 +211,61 @@ void Keyboard_Controller::reboot () {
   ctrl_port.outb (cmd_cpu_reset);       // reset
 }
 
-Key Keyboard_Controller::key_hit () {
-  Key invalid;                      // invalid default key
-  /* TODO: Insert sourcecode */
-  return invalid;
+Key
+Keyboard_Controller::key_hit()
+{
+	Key invalid;                      // invalid default key
+	unsigned char status = ctrl_port.inb();
+
+			/* polling - don't wait for output buffer */
+	if (status & outb) {
+		unsigned char t = data_port.inb();
+		if (!(status & auxb)) {
+			code = t;
+			if (key_decoded())
+				return gather;
+		}
+	}
+
+	return invalid;
 }
 
-void Keyboard_Controller::set_repeat_rate (unsigned char speed, unsigned char delay) {
-  /* TODO: Insert sourcecode */
+#define WAITFORINPUTBUFFER() do {				\
+	while ((unsigned char)ctrl_port.inb() & inpb);		\
+} while (0)
+
+		/* wait for keyboard response */
+#define WAITFORACK() do {					\
+	while (!((unsigned char)ctrl_port.inb() & outb) ||	\
+	       (unsigned char)data_port.inb() != ack);		\
+} while (0)
+
+void
+Keyboard_Controller::set_repeat_rate(unsigned char speed, unsigned char delay)
+{
+		/* wait until last command was processed */
+	WAITFORINPUTBUFFER();
+	data_port.outb(cmd_set_speed);
+	WAITFORACK();
+
+	WAITFORINPUTBUFFER();
+	data_port.outb(speed | delay << 5);
+	WAITFORACK();
 }
 
-void Keyboard_Controller::set_led (Leds led, bool on) {
-  /* TODO: Insert sourcecode */
+void
+Keyboard_Controller::set_led(Leds led, bool on)
+{
+		/* wait until last command was processed */
+	WAITFORINPUTBUFFER();
+	data_port.outb(cmd_set_led);
+	WAITFORACK();
+
+	WAITFORINPUTBUFFER();
+	if (on)
+		leds |= led;
+	else
+		leds &= ~led;
+	data_port.outb(leds);
+	WAITFORACK();
 }

@@ -35,25 +35,20 @@ public:
 
   /** current selected base
    *
-   *  \todo write declaration
    * **/
-
+   enum Base base;
 
   /** Default constructor initialising with dezimal system
    *
-   *  \todo write implementation
    **/
- O_Stream();
+ O_Stream() : base(dec) {}
 
   /** Default Destructor
    *
-   * \todo write implementation
    * **/
- virtual ~O_Stream();
+ /* virtual ~O_Stream(); */
 
   /** \brief overloded output operator
-   *
-   * \todo write implementation
    *
    * Operator << overloading the default operator. Is used to convert
    * the given datatype into a string that can be printed on an output device.
@@ -98,7 +93,6 @@ public:
 
   /** \brief overloaded output operator for manipulator functions
    *
-   * \todo write implementation
    *
    * Operator << overloading the default operator is used to call defined 
    * manipulators.
@@ -133,31 +127,26 @@ public:
 
 /** \brief print buffer after adding a newline
  *
- * \todo write implementation
  **/
 	O_Stream& endl(O_Stream &out);
  
 /** \brief switch basis of o_stream to binary
  *
- * \todo write implementation
  **/
 	O_Stream& bin(O_Stream &out);
  
 /** \brief switch basis of o_stream to octal
  *
- * \todo write implementation
  **/
 	O_Stream& oct(O_Stream &out);
  
 /** \brief switch basis of o_stream to decimal
  *
- * \todo write implementation
  **/
 	O_Stream& dec(O_Stream &out);
  
 /** \brief switch basis of o_stream to hexadecimal
  *
- * \todo write implementation
  **/
 	O_Stream& hex(O_Stream &out);
  
