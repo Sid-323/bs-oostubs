@@ -9,12 +9,12 @@ SED=sed
 OBJDUMP=objdump
 DOCGEN=doxygen
 
-CFLAGS+=-fno-exceptions
+CFLAGS+=-fno-exceptions -fno-stack-protector
 CXXFLAGS+=${CFLAGS} -fno-rtti -nostdinc++
 LDFLAGS=-e entry -T misc/sections
 
 OBJDUMPFLAGS=-Cxd
-EMUFLAGS+=-no-kvm -kernel
+EMUFLAGS+=-kernel
 DEBUGFLAGS+=-s -S
 GDBFLAGS+=-x misc/gdb.script
 
