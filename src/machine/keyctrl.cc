@@ -230,42 +230,45 @@ Keyboard_Controller::key_hit()
 	return invalid;
 }
 
-#define WAITFORINPUTBUFFER() do {				\
+#define WAITFORINPUTBUF() do {					\
 	while ((unsigned char)ctrl_port.inb() & inpb);		\
 } while (0)
 
 		/* wait for keyboard response */
-#define WAITFORACK() do {					\
-	while (!((unsigned char)ctrl_port.inb() & outb) ||	\
-	       (unsigned char)data_port.inb() != ack);		\
+#define WAITFOROUTPUTBUF() do {					\
+	while (!((unsigned char)ctrl_port.inb() & outb));	\
 } while (0)
 
 void
 Keyboard_Controller::set_repeat_rate(unsigned char speed, unsigned char delay)
 {
 		/* wait until last command was processed */
-	WAITFORINPUTBUFFER();
+	WAITFORINPUTBUF();
 	data_port.outb(cmd_set_speed);
-	WAITFORACK();
+	WAITFOROUTPUTBUF();
+	if ((unsigned char)data_port.inb() != ack)
+		return;
 
-	WAITFORINPUTBUFFER();
-	data_port.outb(speed | delay << 5);
-	WAITFORACK();
+	WAITFORINPUTBUF();
+	data_port.outb((delay << 5) | speed);
+	WAITFOROUTPUTBUF();
+	data_port.inb();
 }
 
 void
 Keyboard_Controller::set_led(Leds led, bool on)
 {
 		/* wait until last command was processed */
-	WAITFORINPUTBUFFER();
+	WAITFORINPUTBUF();
 	data_port.outb(cmd_set_led);
-	WAITFORACK();
+	WAITFOROUTPUTBUF();
 
-	WAITFORINPUTBUFFER();
+	WAITFORINPUTBUF();
 	if (on)
 		leds |= led;
 	else
 		leds &= ~led;
 	data_port.outb(leds);
-	WAITFORACK();
+	WAITFOROUTPUTBUF();
+	data_port.inb();
 }
