@@ -12,7 +12,7 @@
 #include "machine/io_port.h"
 #include "machine/key.h"
 
-/** \brief Keyboard driver
+/** \brief %Keyboard driver
  *
  * Abstraction of the keyboad controller of a computer.
  */
