@@ -20,6 +20,10 @@
  * interrupts is enabled (see class CPU). 
  */
 class PIC {
+private:
+	IO_Port ctrl_1, ctrl_2, mask_1, mask_2;
+	unsigned char master_mask, slave_mask;
+
 public:
 	/** \brief External interrupt sources **/
 	enum Interrupts
@@ -35,8 +39,6 @@ public:
 
   /** \brief allow a specific hardware interrupt
    *
-   * \todo write implementation
-   *
    * Enables the system to handle interrupts of the specified 
    * device using the PIC. To enable the handling of any interrupt 
    * CPU::enable_int() has to be called first.
@@ -47,8 +49,6 @@ public:
 
   /** \brief forbid a specific hardware interrupt
    *
-   * \todo write implementation
-   *
    * Disables an interrupt useing the PIC.
    *
    * \param interrupt number of interrupt that will be forbiden
@@ -56,8 +56,6 @@ public:
    void forbid(Interrupts interrupt); 
 
   /** \brief acknowledge the handling of a pending interrupt
-   *
-   *  \todo write implementation
    *
    * Acknowledge an occured interrupt. This tells the PIC that his last
    * interrupt has been handled. This Method has to be called before the cpu is

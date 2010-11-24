@@ -24,20 +24,16 @@ public:
    
   /** \brief enable the interrupt mechanism of the keyboard
    *
-   * \todo write implementation
-   *
    * Method plugin() enables all keyboard interrupts. After calling plugin()
    * interrupts activated by the keyboard are recognised.
    */
-  void plugin ();
+  void plugin();
 
   /** \brief handle keyboard interrupt
    *
-   *  \todo write implementation
-   *
    * **/
   
-  virtual void trigger ();
+  virtual void trigger();
 };
 
 #endif

@@ -17,12 +17,10 @@
  * This class is a subclass of Gate and implements a standard interrupt routine
  * used as default for unknown/registered interrupts.
  */
-class Panic  : public Gate {
+class Panic : public Gate {
 public:
   
   /** \brief handle unknown/unregistered interrupt 
-   *
-   *  \todo write implementation
    *
    * For debug purposes the cpu will be halted if an unknown interrupt occurs.
    **/
