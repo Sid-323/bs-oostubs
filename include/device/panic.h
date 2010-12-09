@@ -20,12 +20,19 @@
 class Panic : public Gate {
 public:
   
-  /** \brief handle unknown/unregistered interrupt 
+  /** handle unknown interrupt and halt system
    *
-   * For debug purposes the cpu will be halted if an unknown interrupt occurs.
+   * \todo write implementation
+   *
+   * \return always false, due to stopping of system
    **/
-  virtual void trigger();
+  virtual bool prologue ();
 
+   /** never called due to stopping of system
+	*
+	* \todo write implementation
+   **/
+  virtual void epilogue();
 };
 
 #endif
