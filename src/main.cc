@@ -16,6 +16,8 @@
 #include "device/cgastr.h"
 #include "device/keyboard.h"
 
+#include "guard/guard.h"
+
 #include "user/task3.h"
 
 CPU cpu;
@@ -26,6 +28,8 @@ Panic panic;
 CGA_Stream kout;
 Keyboard keyboard;
 
+Guard guard;
+
 /* METHODS  */
 
 extern "C" void kernel(uint32_t magic, const Multiboot_Info* addr);
@@ -34,8 +38,6 @@ extern "C" void kernel(uint32_t magic, const Multiboot_Info* addr);
  *
  * This is the entry point of the operating system.  If this function returns
  * all interrupts will be disabled and the cpu will be halted.
- *
- * \todo uncomment Task3
  *
  * \param magic bootloader magic value
  * \param addr address of multiboot info structure

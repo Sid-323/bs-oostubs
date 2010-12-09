@@ -18,7 +18,7 @@
 extern Plugbox plugbox;
 extern PIC pic;
 
-/***AUFGABE 2***/
+/***AUFGABE 3***/
 #include "device/cgastr.h"
 extern CGA_Stream kout;
 
@@ -29,20 +29,28 @@ Keyboard::plugin()
 	pic.allow(PIC::keyboard);
 }
 
-void
-Keyboard::trigger()
+bool
+Keyboard::prologue()
 {
 	Key key = key_hit();
 
-	if (key.valid()) {
-		if (key.ctrl() && key.alt() &&
-		    key.scancode() == Key::scan::del)
-			reboot();
+	if (!key.valid())
+		return false;
 
-		/***AUFGABE 2***/
-		char buf[2] = {key.ascii(), 0};
+	if (key.ctrl() && key.alt() &&
+	    key.scancode() == Key::scan::del)
+		reboot();
 
-		kout.setpos(0, 6);
-		kout << "Keyboard test: " << buf << endl;
-	}
+	buffer = key;
+	return true;
+}
+
+void
+Keyboard::epilogue()
+{
+	/***AUFGABE 3***/
+	char buf[2] = {buffer.ascii(), 0};
+
+	kout.setpos(0, 6);
+	kout << "Keyboard test: " << buf << endl;
 }

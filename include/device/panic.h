@@ -22,16 +22,13 @@ public:
   
   /** handle unknown interrupt and halt system
    *
-   * \todo write implementation
-   *
    * \return always false, due to stopping of system
    **/
   virtual bool prologue ();
 
    /** never called due to stopping of system
-	*
-	* \todo write implementation
-   **/
+    *
+    **/
   virtual void epilogue();
 };
 

@@ -11,6 +11,7 @@
 
 #include "guard/locker.h"
 #include "guard/gate.h"
+#include "object/queue.h"
 
 /** \brief Interrupt synchronisation handler
  *
@@ -21,29 +22,26 @@
 class Guard : public Locker {
   /** \brief queue of waiting epilogues 
    *
-   * \todo write declaration
    **/
+  Queue epilogues;
 
   /** \brief remove a queued epilogue from the queue
    *
    * This method has to be called secured to ensure that the structure of the
    * queue stays consistent.
    *
-   * \todo write implementation
-   *
    * @return a pointer to the Gate object implementing the next epilogue, or
    * NULL if queue is empty.
    */
-	Gate* remove_epilogue();
+   Gate *remove_epilogue();
 
 public:
   /** \brief leave the critical section
    *
    * Waiting epilogues can be processed now.
    *
-   * \todo write implementation
    **/ 
-	void leave();
+   void leave();
 
   /** \brief try to execute epilogue
    *
@@ -51,11 +49,9 @@ public:
    * section used for the epilogue is locke the epilogue has to be queued for
    * later processing.
    *
-   * \todo write implementation
-   *
    * @param item pointer to the Gate object implementing the epilogue.
    **/
-	void relay(Gate* item);
+   void relay(Gate *item);
 };
 
 #endif

@@ -9,6 +9,10 @@
 #ifndef __Secure_include__
 #define __Secure_include__
 
+#include "guard/guard.h"
+
+extern Guard guard;
+
 /** \brief RAII implemented critical section
  *
  * Class Secure is used as a simple interface to set and release the 
@@ -21,21 +25,20 @@ public:
   /** \brief Default constructor enters critical section
    *
    * Sets the lock through method guard.enter().
-   *
-   * \todo write implementation
    **/
-  Secure(){
-
+  Secure()
+  {
+  	  guard.enter();
   }
 
   /** \brief Default destructor leaving critical section
    * 
    * Unsets the lock through method guard.leave().
    *
-   * \todo write implementation
    **/
-  ~Secure(){
-
+  ~Secure()
+  {
+  	  guard.leave();
   }
 };
 

@@ -20,49 +20,48 @@ class Locker {
 protected:
   /** atomar locking variable
    *
-   * \todo write declaration
    **/
+  bool lock;
 
 public:
   /** \brief Default constructor 
    *
    * Initialises the locking variable (free). 
    *
-   * \todo write implementation
    **/
-  Locker(){
-
-  }
+   Locker() : lock(true) {}
 
   /** \brief enter a critical section
    *
    * Locks the variable.
    *
-   * \todo write implementation
    **/
-  void enter(){
-
+  void
+  enter()
+  {
+  	  lock = false;
   }
 
   /** \brief return from a critical section
    *
    * Releases locking variable.
    *
-   * \todo write implementation
    **/
-  void retne(){
-
+  void
+  retne()
+  {
+  	  lock = true;
   }
 
   /** \brief test for critical section
    *
-   * \todo write implementation
-   *
    * @return the value of the locking variable indicating if the critical 
    *         section is occupied or free.
    */
-  bool avail(){
-	return true;
+  bool
+  avail()
+  {
+  	  return lock;
   }
 };
 

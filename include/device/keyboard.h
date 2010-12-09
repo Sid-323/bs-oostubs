@@ -22,14 +22,13 @@ class Keyboard : public Keyboard_Controller, public Gate  {
 private:
 	/** \brief storage for fetched keys
 	 *
-	 * \todo write declaration
 	 **/
+	Key buffer;
+	//int buffer_read;
 
 public:
    
   /** \brief enable the interrupt mechanism of the keyboard
-   *
-   * \todo write implementation
    *
    * Method plugin() enables all keyboard interrupts. After calling plugin()
    * interrupts activated by the keyboard are recognised.
@@ -38,16 +37,13 @@ public:
 
   /** \brief fetch the key from the controller
    *
-   * \todo write implementation
-   *
    * \return true if epilogue must be executed afterwards, false otherwise
    **/
   virtual bool prologue ();
 
    /** \brief print the fetched key to the screen
-   *
-   * \todo write implementation
-   **/
+    *
+    **/
   virtual void epilogue();        
 };
 

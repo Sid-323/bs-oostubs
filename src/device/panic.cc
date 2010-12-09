@@ -15,9 +15,17 @@
 extern CPU cpu;
 extern CGA_Stream kout;
 
-void
-Panic::trigger()
+bool
+Panic::prologue()
 {
-        kout << "Error: Unhandled interrupt" << endl;
+        //kout << "Error: Unhandled interrupt" << endl;
         cpu.halt();
+
+        return false;
+}
+
+void
+Panic::epilogue()
+{
+	/* never reached */
 }

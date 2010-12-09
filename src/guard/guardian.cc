@@ -11,9 +11,12 @@
 #include "machine/pic.h"
 
 #include "guard/gate.h"
+#include "guard/guard.h"
 
 extern PIC pic;
 extern Plugbox plugbox;
+
+extern Guard guard;
 
 /* METHODS  */
 extern "C" void guardian(unsigned short slot);
@@ -28,5 +31,7 @@ guardian(unsigned short slot)
 	Gate &gate = plugbox.report(slot);
 
 	pic.ack();
-	gate.trigger();
+
+	if (gate.prologue())
+		guard.relay(&gate);
 }

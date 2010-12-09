@@ -18,23 +18,19 @@
  * implements the appropriated behavior of the handler.
  */
 
-class Gate : public Chain  {
+class Gate : public Chain {
 private:
 	/** \brief current queue state
 	 *
-	 * \todo write declaration
 	 * **/
+	bool isQueued;
 
 public:
   /**\brief Default Constructor
    *
-   * \todo write implementation
-   *
    * Sets this gate to be unqueued
    **/
-  Gate(){
-  
-  }
+   Gate() : isQueued(false) {}
 
   /** \brief Destructor
    *
@@ -61,25 +57,25 @@ public:
    virtual void epilogue() = 0;
 
    /** \brief set queuing status
-	*
-	* \todo write implementation
-	*
-	* \param q new queuing state
-	**/
-   void queued(bool q){
-
+    *
+    * \param q new queuing state
+    **/
+   void
+   queued(bool q)
+   {
+   	   isQueued = q;
    }
 
    /** \brief get queuing status
-	*
-	* \todo write implementation
-	*
-	* \return true if queued, false otherwise
-	**/
-   bool queued() const{
-	   return false;
+    *
+    *
+    * \return true if queued, false otherwise
+    **/
+   bool
+   queued()
+   {
+	   return isQueued;
    }
 };
 
 #endif
->>>>>>> 9f4cccc... Third task of OOStuBs:
