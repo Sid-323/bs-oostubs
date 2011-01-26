@@ -26,13 +26,13 @@ void Task4::RotCursor::action(){
 		kout.setpos(x,y);
 		switch(i++%4)
 		{
-			case(0):	kout << '|';
+			case(0):	kout << "|";
 						break;
-			case(1):	kout << '/';
+			case(1):	kout << "/";
 						break;	
-			case(2):	kout << '-';
+			case(2):	kout << "-";
 						break;
-			case(3):	kout << '\\';
+			case(3):	kout << "\\";
 						break;
 		}
 		kout.flush();
@@ -74,8 +74,10 @@ void Task4::KeyLogger::action(){
 		kout.setpos(x,y);
 		kout << "Key: ";
 		k=keyboard.key_hit();
-		if(k.valid())
-			kout << k.ascii() << endl;
+		if(k.valid()) {
+			char buf[2] = {k.ascii(), 0};
+			kout << buf << endl;
+		}
 		resume();
 	}
 }

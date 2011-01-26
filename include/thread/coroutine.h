@@ -22,9 +22,8 @@
 class Coroutine {
 private:
   /** \brief saved register content storage 
-   *
-   *  \todo write declaration
    * **/
+  struct toc regs;
 
 public:
   /** \brief Default constructor
@@ -40,16 +39,12 @@ public:
   /** \brief triggers a context switch
    *
    * This method delegates to the scheduler
-   *
-   * \todo write implementation
    **/
   void resume();
 
   /** \brief exit this coroutine
    *
    * This method delegates to the scheduler
-   *
-   * \todo write implementation
    **/
   void exit();
 

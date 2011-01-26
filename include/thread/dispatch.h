@@ -19,23 +19,19 @@ class Dispatcher {
 private:
   /** \brief Pointer to the currently active coroutine 
    *
-   * \todo write declaration
    * **/
+  Entrant *life;
 
 public:
   /** \brief Default constructor.
    *
-   * \todo write implementation
-   *
    *  Initializes current thread/coroutine to be invalid, since system is not
    *  yet started.
    **/
-  Dispatcher();
+  Dispatcher() : life(0) {}
 
   /** \brief starts the execution of the first coroutine of the 
    * operating system.
-   *
-   * \todo write implementation
    *
    * @param first reference of the coroutine that will be executed first.
    */
@@ -46,19 +42,15 @@ public:
    *
    * This method can be called by a coroutine or through the scheduler.
    *
-   * \todo write implementation
-   *
    * @param next reference of the coroutine that will be executed next.
    */
   void dispatch(Entrant& next);
 
   /** \brief returns the currently active coroutine.
    *
-   * \todo write implementation
-   * 
    * @return pointer for the currently active coroutine.
    */
-  Entrant* active() const;
+  Entrant* active();
 };
 
 #endif
