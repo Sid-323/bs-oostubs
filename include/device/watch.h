@@ -25,15 +25,11 @@ public:
    *
    * Initailises the PIT with supplied value
    *
-   * \todo write implementation
-   *
    * \param us preemtible Thread execution time in microseconds
    **/
   Watch (unsigned int us) : PIT (us) {}
 
   /** \brief register the watch with the plugbox and enable hardware interrupt
-   *
-   * \todo write implementation
    */
   void windup();
 
@@ -41,15 +37,14 @@ public:
    *
    * does nothing
    *
-   * \todo write implementation
-   *
    * \return always true
    **/
-  virtual bool prologue();
+  virtual bool prologue()
+  {
+  	  return true;
+  }
 
   /** \brief epilogue implementing the thread switch
-   *
-   * \todo write implementation
    **/
   virtual void epilogue();
 };

@@ -10,9 +10,9 @@
 #include "thread/kickoff.h"
 #include "machine/toc.h"
 
-#include "thread/scheduler.h"
+#include "syscall/guarded_scheduler.h"
 
-extern Scheduler scheduler;
+extern Guarded_Scheduler scheduler;
 
 /* to be compatible with C the signature of the kickoff function need to be changed to do this, one can cast the kickoff function using the fallowing line:
  * void(*kickoffC)(void*) = reinterpret_cast<void(*)(void*)>(&kickoff);

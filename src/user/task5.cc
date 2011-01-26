@@ -28,13 +28,13 @@ void Task5::RotCursor::action(){
 		kout.setpos(x, y);
 		switch(i++%4)
 		{
-			case(0):	kout << '|';
+			case(0):	kout << "|";
 						break;
-			case(1):	kout << '/';
+			case(1):	kout << "/";
 						break;	
-			case(2):	kout << '-';
+			case(2):	kout << "-";
 						break;
-			case(3):	kout << '\\';
+			case(3):	kout << "\\";
 						break;
 		}
 		kout.flush();

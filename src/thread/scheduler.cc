@@ -47,8 +47,12 @@ Scheduler::kill(Entrant* that)
 void
 Scheduler::resume()
 {
-	Entrant *next = (Entrant *)threads.dequeue();
-	if (next) {
+	Entrant *next;
+
+	if (active() && /* in case, the watch is wound up and interrupts enabled
+			 * after the first thread is ready but was not yet scheduled
+		 	 * (or resume() was simply called before schedule()) */
+	    (next = (Entrant *)threads.dequeue())) {
 		threads.enqueue(active());
 		dispatch(*next);
 	}
