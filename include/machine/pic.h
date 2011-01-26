@@ -28,7 +28,8 @@ public:
 	/** \brief External interrupt sources **/
 	enum Interrupts
 	{
-		keyboard = 1	/**< Keyboard controller **/
+		timer=0,
+		keyboard = 1
 	};
 
    /** \brief Default Constructor

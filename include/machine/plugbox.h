@@ -25,7 +25,7 @@ private:
    Gate *map[64];
 
 public:
-  enum slots {
+  enum Slots {
     timer = 32,
     keyboard = 33
   };
