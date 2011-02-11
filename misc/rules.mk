@@ -53,22 +53,22 @@ ${BUILD}/%.o: ${SRCASM}/%.S  Makefile | ${BUILD}
 
 ${BUILD}/%.d: ${SRCASM}/%.S | ${BUILD}
 	${CC} -M ${ASMFLAGS} $< ${INCPATHS}  -o $@.temp
-	${SED} "s!\($(notdir $(basename $@)).o\)!${BUILD}/\1!g" $@.temp > $@
+	${SED} "s!\($(notdir $(basename $@))\.o\)!${BUILD}/\1!g" $@.temp > $@
 	@rm -f $@.temp
 
 ${BUILD}/%.d: ${SRC}/*/%.cc | ${BUILD}
 	${CXX} -M ${CXXFLAGS} $< ${INCPATHS} -o $@.temp
-	${SED} "s!\($(notdir $(basename $@)).o\)!${BUILD}/\1!g" $@.temp > $@
+	${SED} "s!\($(notdir $(basename $@))\.o\)!${BUILD}/\1!g" $@.temp > $@
 	@rm -f $@.temp
 
 ${BUILD}/%.d: ${SRC}/*/%.c | ${BUILD}
 	${CC} -M ${CFLAGS} $< ${INCPATHS} -o $@.temp
-	${SED} "s!\($(notdir $(basename $@)).o\)!${BUILD}/\1!g" $@.temp > $@
+	${SED} "s!\($(notdir $(basename $@))\.o\)!${BUILD}/\1!g" $@.temp > $@
 	@rm -f $@.temp
 
 ${BUILD}/%.d: ${SRC}/%.cc | ${BUILD}
 	${CXX} -M ${CXXFLAGS} $< ${INCPATHS} -o $@.temp
-	${SED} "s!\($(notdir $(basename $@)).o\)!${BUILD}/\1!g" $@.temp > $@
+	${SED} "s!\($(notdir $(basename $@))\.o\)!${BUILD}/\1!g" $@.temp > $@
 	@rm -f $@.temp
 
 dump: $(notdir ${TARGET}).dump
