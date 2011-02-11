@@ -11,16 +11,13 @@
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
 #include "machine/key.h"
+#include "meeting/semaphore.h"
 
 #include "machine/plugbox.h"
 #include "machine/pic.h"
 
 extern Plugbox plugbox;
 extern PIC pic;
-
-/***AUFGABE 3***/
-#include "device/cgastr.h"
-extern CGA_Stream kout;
 
 void
 Keyboard::plugin()
@@ -48,9 +45,17 @@ Keyboard::prologue()
 void
 Keyboard::epilogue()
 {
-	/***AUFGABE 3***/
-	char buf[2] = {buffer.ascii(), 0};
+	if (buffer_read) {
+		semaphore.signal();
+		buffer_read = 0;
+	}
+}
 
-	kout.setpos(0, 6);
-	kout << "Keyboard test: " << buf << endl;
+Key
+Keyboard::getkey()
+{
+	semaphore.wait();
+
+	buffer_read = 1;
+	return buffer;
 }

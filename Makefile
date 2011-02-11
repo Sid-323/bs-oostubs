@@ -9,7 +9,8 @@ CXXFLAGS=
 LDFLAGS=-O0
 ASMFLAGS=-g
 
-OBJECT_IGNORE= task1.o task2.o task3.o task4.o task5.o string.o
+# task 6 requires task5 class
+OBJECT_IGNORE= task1.o task2.o task3.o task4.o
 
 INCPATHS=
 LDPATHS=

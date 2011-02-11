@@ -16,6 +16,7 @@ enum StackNames{
 	numStacks       /**< number of stacks in example Task **/
 };
 
+	protected:
 /** \brief Constants used in example Task **/
 enum Constants{
 	stackSize=1024,	/**< size of the stacks **/
@@ -27,6 +28,7 @@ enum Constants{
 	counter2Y=15,	/**< Y position of the second counter on the screen **/
 };
 
+	private:
 /**\brief globally declared byte array to be used as stacks for applications **/
 static unsigned char stacks[numStacks][stackSize];
 
@@ -83,6 +85,7 @@ class Counter : public Application
 		virtual void action();
 };
 
+	protected:
 		/** \brief Application for a rotating symbol **/
 		RotCursor rotCursor;
 		/** \brief Application for a printed out counter **/

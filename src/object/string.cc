@@ -72,7 +72,9 @@ unsigned int StringBase::strlen(const char* string)
 }
 
 O_Stream& operator<<(O_Stream& out, const StaticString& s){
-	for(unsigned char i=0;i<s.length();i++)
-		out << s[i];
+	for(unsigned char i=0;i<s.length();i++) {
+		char buf[2] = {s[i], '\0'};
+		out << buf;
+	}
 	return out;
 }

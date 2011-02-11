@@ -36,7 +36,7 @@ void Task6::Cmd::clearBuffer(){
 	kout.flush();
 	kout.setpos(x,y);
 	for(unsigned int i=0;i<inputBuffer.length();i++)
-		kout << ' ';
+		kout << " ";
 	kout.flush();
 	kout.setpos(x,y);
 	inputBuffer="";
@@ -51,7 +51,7 @@ void Task6::Cmd::parseBuffer(){
 		Secure s;
 		kout.setpos(0,y+2);
 		for(unsigned int i=0;i<80;i++)
-			kout << ' ';
+			kout << " ";
 		kout.flush();
 	}
 
@@ -61,7 +61,7 @@ void Task6::Cmd::parseBuffer(){
 		kout.setpos(0,y+2);
 		kout << "Available tasks: ";
 		for(unsigned short i=0;i<appNum;i++)
-			kout << appNames[i] << ' ';
+			kout << appNames[i] << " ";
 		kout.flush();
 		return;
 	}
@@ -94,7 +94,7 @@ void Task6::Cmd::parseBuffer(){
 			{
 				if(running[i])
 				{
-					scheduler.kill(*apps[i]);
+					scheduler.kill(apps[i]);
 					running[i]=false;
 				}
 				else
@@ -122,7 +122,7 @@ void Task6::Cmd::startApp(unsigned int i){
 
 void Task6::Cmd::stopApp(unsigned int i){
 	if(running[i])
-		scheduler.kill(*apps[i]);
+		scheduler.kill(apps[i]);
 }
 
 void Task6::Cmd::putChar(char c){
@@ -133,7 +133,7 @@ void Task6::Cmd::putChar(char c){
 	kout.setpos(x,y);
 	kout << inputBuffer;
 	if(c=='\b')
-		kout << ' ';
+		kout << " ";
 	kout.flush();
 }
 
@@ -146,7 +146,7 @@ void Task6::Cmd::action(){
 	kout.flush();
 	kout.getpos(x,y);
 	for(unsigned int i=0;i<bufferSize;i++)
-		kout << ' ';
+		kout << " ";
 	kout.flush();
 	kout.setpos(x, y);
 	}
@@ -174,4 +174,7 @@ Task6::Task6() : Task5(), cmd(cmdStack+stackSize, cmdX, cmdY,
 
 void Task6::action(){
 	scheduler.ready(cmd);
+
+	/* keep this thread running in case there's only 'cmd' waiting for a key press */
+	while (42);
 }

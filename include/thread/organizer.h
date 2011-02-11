@@ -17,8 +17,6 @@ public:
 	 * The Customer will be put in the supplied Waitingroom to wait for a
 	 * condition dependant on the Waitingroom
 	 *
-	 * \todo write implementation
-	 *
 	 * \param waitingroom the waitingroom to wait in
 	 **/
 	void block(Waitingroom& waitingroom);
@@ -26,8 +24,6 @@ public:
 	/**\brief wakes the supplied Customer up
 	 *
 	 * The supplied Customer will be put to the end of the ready queue of the scheduler.
-	 *
-	 * \todo write implementation
 	 *
 	 * \param customer The Customer to be woken up
 	 **/
@@ -38,8 +34,6 @@ public:
 	 * This method removes the supplied Customer from either the ready queue or
 	 * the waitingroom queue he is currently waiting in.
 	 *
-	 * \todo write implementation
-	 *
 	 * \param that The Customer to kill
 	 **/
 	void kill(Customer& that);
@@ -48,9 +42,10 @@ public:
 	 *
 	 * \return the currently active Customer
 	 **/
-    Customer* active() const{
-		return static_cast<Customer*>(Scheduler::active());
-    }
+	Customer *active()
+	{
+		return (Customer *)Scheduler::active();
+	}
 };
 
 #endif

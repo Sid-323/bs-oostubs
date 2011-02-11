@@ -11,19 +11,16 @@
  * functionality to kill currently blocked Customers and to wake up all
  * Customers on destruction of the ressource.
  **/
-class Waitingroom : public Queue { public:
+class Waitingroom : public Queue {
+	public:
 
 		/**\brief virtual destructor
 		 *
 		 * Wake up all the currently blocked Customers of this %Waitingroom.
-		 *
-		 * \todo write implementation
 		 **/
 		virtual ~Waitingroom();
 
 		/**\brief remove a customer from the blocked queue
-		 *
-		 * \todo write implementation
 		 *
 		 * \param that the Customer to be removed
 		 **/

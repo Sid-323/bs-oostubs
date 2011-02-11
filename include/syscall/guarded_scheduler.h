@@ -18,31 +18,25 @@
  * of the superclasses Organizer respective Scheduler. 
  * Also Threads and Customers are handled instead of Entrants.
  **/
-class Guarded_Scheduler : protected Organizer{
+class Guarded_Scheduler : public Organizer{
 public:
   /** \brief Start the scheduling by starting the first thread
    *
    * If there is one contained in the queue of the scheduler.
    **/ 
-  void schedule(){
-
-  }
+  void schedule();
   
   /** \brief Insert the specified thread into the ready queue
    *
    * \param that reference to the thread to be inserted
    **/
-  void ready(Thread& that){
-
-  }
+  void ready(Thread& that);
   
   /** \brief Remove the currently active thread from the queue
    *
    * If there are no more threads, wait for new threads to arive.
    **/
-  void exit(){
-
-  }
+  void exit();
 
   /** \brief Remove the specified thread from the queue of processes.
    *
@@ -50,9 +44,7 @@ public:
    *
    * \param that reference of the thread to be killed.
    **/
-  void kill(Thread* that){
-
-  }
+  void kill(Thread* that);
 
   /** \brief Use the scheduling algorithm to get the next thread and
    * resume with that thread.
@@ -63,8 +55,9 @@ public:
    *
    * \return the current Thread
    **/
-  Thread* active() const{
-	return static_cast<Thread*>(Organizer::active());
+  Thread* active()
+  {
+	return (Thread *)Organizer::active();
   }
 };
 

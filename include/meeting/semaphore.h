@@ -16,17 +16,15 @@ class Semaphore : public Waitingroom
 	private:
 		/** \brief internal representation of the semaphore counter
 		 *
-		 * \todo write declaration
 		 **/
+		unsigned int cnt;
 
 	public:
 		/**\brief Construct a new semaphore with initial value
 		 *
-		 * \todo write implementation
-		 *
 		 * \param value initial value of the semaphore
 		 **/
-		Semaphore(unsigned int value);
+		Semaphore(unsigned int value) : cnt(value) {}
 
 		/**\brief virtual destructor to wake up blocked Customers**/
 		virtual ~Semaphore(){}
@@ -36,8 +34,6 @@ class Semaphore : public Waitingroom
 		 * This method can block if no more free ressources are available.  The
 		 * currently active Customer will be suspended until a ressource is
 		 * freed by the signal() or v() call.
-		 *
-		 * \todo write implementation
 		 **/
 		void p();
 
@@ -45,8 +41,6 @@ class Semaphore : public Waitingroom
 		 *
 		 * This method readies a Customer if there is one currently waiting for
 		 * this semaphore.
-		 *
-		 * \todo write implementation
 		 **/
 		void v();
 

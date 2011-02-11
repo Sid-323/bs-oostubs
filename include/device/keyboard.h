@@ -12,6 +12,7 @@
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
 #include "machine/key.h"
+#include "meeting/semaphore.h"
 
 /** \brief %Keyboard driver with interrupt support
  *
@@ -21,38 +22,37 @@
  **/
 class Keyboard : public Keyboard_Controller, public Gate  {
 private:
+	Semaphore semaphore;
+
 	/** \brief storage for fetched keys
 	 *
 	 **/
 	Key buffer;
-	//int buffer_read;
+	int buffer_read;
 
 public:
-   
+  Keyboard() : semaphore(0), buffer_read(1) {}
+
   /** \brief enable the interrupt mechanism of the keyboard
    *
    * Method plugin() enables all keyboard interrupts. After calling plugin()
    * interrupts activated by the keyboard are recognised.
    **/
-  void plugin ();
+  void plugin();
 
   /** \brief fetch the key from the controller
    *
    * \return true if epilogue must be executed afterwards, false otherwise
    **/
-  virtual bool prologue ();
+  virtual bool prologue();
 
    /** \brief print the fetched key to the screen
     *
-    * \todo write implementation
     **/
   virtual void epilogue();
 
   /** \brief get the next Key or block current Thread
    *
-   * \todo write implementation
-   *
-   * \return the next Key, that was pressed on the keyboard
    **/
   Key getkey();
 };
